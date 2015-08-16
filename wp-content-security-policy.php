@@ -3,7 +3,7 @@
 Plugin Name: WP Content Security Policy Plugin
 Plugin URI:  http://URI_Of_Page_Describing_Plugin_and_Updates
 Description: Setup, output, and log content security policy information.
-Version:     0.0.1
+Version:     1.3
 Author:      Dylan Downhill
 Author URI:  http://www.elixirinteractive.com
 License:     GPL2

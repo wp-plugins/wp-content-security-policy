@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: dylandownhill
+Contributors: dyland
 Donate link: None
 Tags: content security policy, csp
 Requires at least: 4.2.2
 Tested up to: 4.2
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,16 +97,21 @@ Usually you would want to keep security as strict as possible while still allowi
 
 == Changelog ==
 
-= 1.0 =
-* Initial release.
 
-= 1.1 =
-* Bug fix.
+= 1.3 =
+* Some class and admin functions were not static but needed to be.
+* Undefined variables.
 
 = 1.2 =
 * Added entry verification for admin screen and added information for user.
 * Using the automatic add to policy/ignore is now cleaner  and simpler.
 * Added nonce in callback to prevent attacks.
+
+= 1.1 =
+* Bug fix.
+
+= 1.0 =
+* Initial release.
 
 
 == Written By ==

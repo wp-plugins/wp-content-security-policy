@@ -220,6 +220,7 @@ class wpCSPAdmin{
 		$SinceDate = $wpdb->get_var("select min( CreatedOn)  from " . wpCSPclass::LogTableName() );
 		$rows = $wpdb->get_results("select violated_directive, blocked_uri, count( *) as numerrors from " . wpCSPclass::LogTableName(). " WHERE 1 group by violated_directive,blocked_uri" );
 		self::update_database() ;
+		$Counter = 0 ;
 		?>
 	     <div class="wrap">
 	     	<div class="wpcsp-wpcspadmin wpcsp-logadmin">
@@ -256,13 +257,19 @@ class wpCSPAdmin{
 						$URIParts = parse_url( $obj->blocked_uri  ) ;
 						if ( $URIParts !== false && !empty( $URIParts['host'])):
 							$URIHostnameWildcard = '*' . substr( $URIParts['host'] , strpos($URIParts['host'],"." )) ;
-							if ( substr( $URIParts['path'] , -1 ) == '/'){
-								$URLPathDirectory = $URIParts['path'] ;
-								$URLPathFile = '';
+							if ( !empty( $URIParts['path'] )  ) {
+								if ( substr( $URIParts['path'] , -1 ) == '/'){
+									$URLPathDirectory = $URIParts['path'] ;
+									$URLPathFile = '';
+								}
+								else {
+									$URLPathDirectory = substr( $URIParts['path'] , 0, strrpos($URIParts['path'],"/" ) +1) ;
+									$URLPathFile = substr( $URIParts['path'] , strrpos($URIParts['path'],"/" )+1) ;
+								}
 							}
 							else {
-								$URLPathDirectory = substr( $URIParts['path'] , 0, strrpos($URIParts['path'],"/" ) +1) ;
-								$URLPathFile = substr( $URIParts['path'] , strrpos($URIParts['path'],"/" )+1) ;
+								$URLPathDirectory = '' ;
+								$URLPathFile = '' ;
 							}
 							?>
 							<tr data-violateddirective='<?php echo $obj->violated_directive ;?>' data-target='#<?php echo $TargetRow2 ;?>'>
@@ -548,7 +555,7 @@ class wpCSPAdmin{
 	 * @param array $Policies	- pre-parsed array of URL policies
 	 * @return array 			- Array of errors
 	 */
-	private function FindCSPErrors( $Policies ) {
+	static private function FindCSPErrors( $Policies ) {
 		$return = array() ;
 		$SchemeTags = array( 'data', 'blob','filesystem','http','https',);
 		if( is_array( $Policies)){

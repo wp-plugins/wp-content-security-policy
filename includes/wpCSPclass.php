@@ -74,7 +74,7 @@ class wpCSPclass{
 	 * @param array $vars
 	 * @return array
 	 */
-	function plugin_add_trigger($vars) {
+	public static function plugin_add_trigger($vars) {
 		$vars[] = self::PLUGIN_TRIGGER ;
 		return $vars;
 	}
@@ -82,7 +82,7 @@ class wpCSPclass{
 	/**
 	 * Check if the call back trigger is set - if so do the work.
 	 */
-	function plugin_trigger_check() {
+	public static function plugin_trigger_check() {
 		if(intval(get_query_var( self::PLUGIN_TRIGGER )) == 1) {
 
 			// Check the nonce is valid, try to stop people attacking the site.
@@ -173,7 +173,7 @@ class wpCSPclass{
 	 * @param string $option
 	 * @return array of strings
 	 */
-	public function CleanPolicyOptionText( $option ) {
+	public static function CleanPolicyOptionText( $option ) {
 		$return = array();
 		if ( !empty( $option )) {
 			$option = str_replace(array("\n","\r"), ' ', $option);
