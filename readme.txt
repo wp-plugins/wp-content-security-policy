@@ -8,7 +8,7 @@ Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Block XSS vulnerabilities by including a Content Security Policy header, receives and organizes policy violations allowing for easily maintained website security.
+Block XSS vulnerabilities by adding a Content Security Policy header, plugin receives violations to easily maintain the security policy.
 
 == Description ==
 
